@@ -79,6 +79,8 @@ App = {
 			if (err === null) {
 				App.account = account;
 				$("#accountAddress").html("Your Account: " + account);
+			} else {
+				console.log("Error Code 342: " + err);
 			}
 		});
 
@@ -123,7 +125,8 @@ App = {
 			.then(function(hasVoted) {
 				// Do not allow a user to vote
 				if (hasVoted) {
-					$("form").hide();
+					$("#castVoteForm").hide();
+					$("#hasVoted").show();
 				}
 				loader.hide();
 				content.show();
@@ -150,8 +153,154 @@ App = {
 	}
 };
 
+// Initialize contract on an address
+var myAbi = [
+	{
+		constant: true,
+		inputs: [],
+		name: "candidatesCount",
+		outputs: [
+			{
+				name: "",
+				type: "uint256"
+			}
+		],
+		payable: false,
+		stateMutability: "view",
+		type: "function",
+		signature: "0x2d35a8a2"
+	},
+	{
+		constant: true,
+		inputs: [
+			{
+				name: "",
+				type: "uint256"
+			}
+		],
+		name: "candidates",
+		outputs: [
+			{
+				name: "id",
+				type: "uint256"
+			},
+			{
+				name: "name",
+				type: "string"
+			},
+			{
+				name: "voteCount",
+				type: "uint256"
+			}
+		],
+		payable: false,
+		stateMutability: "view",
+		type: "function",
+		signature: "0x3477ee2e"
+	},
+	{
+		constant: true,
+		inputs: [],
+		name: "candidate",
+		outputs: [
+			{
+				name: "",
+				type: "string"
+			}
+		],
+		payable: false,
+		stateMutability: "view",
+		type: "function",
+		signature: "0x6c8381f8"
+	},
+	{
+		constant: true,
+		inputs: [
+			{
+				name: "",
+				type: "address"
+			}
+		],
+		name: "voters",
+		outputs: [
+			{
+				name: "",
+				type: "bool"
+			}
+		],
+		payable: false,
+		stateMutability: "view",
+		type: "function",
+		signature: "0xa3ec138d"
+	},
+	{
+		inputs: [],
+		payable: false,
+		stateMutability: "nonpayable",
+		type: "constructor",
+		signature: "constructor"
+	},
+	{
+		constant: false,
+		inputs: [
+			{
+				name: "_name",
+				type: "string"
+			}
+		],
+		name: "addCandidate",
+		outputs: [],
+		payable: false,
+		stateMutability: "nonpayable",
+		type: "function",
+		signature: "0x462e91ec"
+	},
+	{
+		constant: false,
+		inputs: [
+			{
+				name: "_candidateId",
+				type: "uint256"
+			}
+		],
+		name: "vote",
+		outputs: [],
+		payable: false,
+		stateMutability: "nonpayable",
+		type: "function",
+		signature: "0x0121b93f"
+	}
+];
+
+// // Specify address of contract
+var myContractAddress = "0xb66BB7440a4E12bc9b2981c5deAdeBd640ef5DeE";
+
+// Instantiate myContract
+var myContract = web3.eth.contract(myAbi);
+
+var Coursetro = myContract.at(myContractAddress);
+
+console.log(Coursetro);
+// var version = web3.version.api;
+// console.log(version); // "0.20.3"
+
+// myContract.methods.addCandidate("New").send();
+
+// console.log(electionAddress);
+// electionAddress.addCandidate("Candidate 3");
+
 $(function() {
 	$(window).load(function() {
 		App.init();
+		$("#addNewCandidateBtn").click(function() {
+			let candidateName = $("#addNewCandidate").val();
+			if (candidateName) {
+				Coursetro.addCandidate(candidateName, function(err, result) {
+					if (err) {
+						console.log("Error occured");
+					}
+				});
+			}
+		});
 	});
 });
