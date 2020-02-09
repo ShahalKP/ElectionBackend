@@ -273,7 +273,7 @@ var myAbi = [
 ];
 
 // // Specify address of contract
-var myContractAddress = "0xa18fd75a7c502d62b637032d3e4ffe6ff433c7f6f14a8e4ff41a07cce51673aa";
+var myContractAddress = "0x893dba22b2892e29b100db12eb295a578ec6e979f1e184d7243c935095b35bda";
 
 // Instantiate myContract
 var myContract = web3.eth.contract(myAbi);
