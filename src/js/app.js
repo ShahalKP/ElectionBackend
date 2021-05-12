@@ -11,6 +11,7 @@ App = {
 	init: function() {
 		try {
 			// Request account access if needed
+			web3.eth.defaultAccount = ethereum._state.accounts[0]
 			ethereum.enable();
 		} catch (error) {
 			// User denied account access...
@@ -156,6 +157,21 @@ App = {
 			.catch(function(err) {
 				console.error(err);
 			});
+	},
+
+	addCandidate: function() {
+		var name = $("#addNewCandidate").val();
+		App.contracts.Election.deployed()
+			.then(function(instance) {
+				return instance.addCandidate(name, { from: web3.eth.defaultAccount });
+			})
+			.then(function(result) {
+				// Wait for votes to update
+				console.log('voter added');
+			})
+			.catch(function(err) {
+				console.error(err);
+			});
 	}
 };
 
@@ -279,7 +295,7 @@ var myAbi = [
 ];
 
 // // Specify address of contract
-var myContractAddress = "0x237be3253b8151e535e92a978b7cf04d27468334ab521f7d4589f716ab78ef5b";
+var myContractAddress = "0x08592dfb021664198de848dedf07730415691801ae42a0ca161ecb3c1e27d061";
 
 // Instantiate myContract
 var myContract = web3.eth.contract(myAbi);
@@ -298,15 +314,15 @@ console.log(Coursetro);
 $(function() {
 	$(window).load(function() {
 		App.init();
-		$("#addNewCandidateBtn").click(function() {
-			let candidateName = $("#addNewCandidate").val();
-			if (candidateName) {
-				Coursetro.addCandidate(candidateName, function(err, result) {
-					if (err) {
-						console.log("Error occured");
-					}
-				});
-			}
-		});
+		// $("#addNewCandidateBtn").click(function() {
+		// 	let candidateName = $("#addNewCandidate").val();
+		// 	if (candidateName) {
+		// 		Coursetro.addCandidate(candidateName, function(err, result) {
+		// 			if (err) {
+		// 				console.log("Error occured");
+		// 			}
+		// 		});
+		// 	}
+		// });
 	});
 });
