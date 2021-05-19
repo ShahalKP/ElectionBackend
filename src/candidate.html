@@ -21,8 +21,12 @@
       .navbar-header {
         padding-left: 50px;
       }
-      button {
-        background-color: rgb(11, 11, 12);
+
+      table {
+        width: 150px;
+      }
+      .table .name {
+        width: 350px;
       }
     </style>
   </head>
@@ -46,20 +50,44 @@
         <div class="col-lg-12">
           <!-- <h1 class="text-center">Election</h1>
 					<hr /> -->
-
+          <br />
+          <div id="loader">
+            <p class="text-center">Loading...</p>
+          </div>
+          <div id="addNew" style="margin-bottom: 5em">
+            <form
+              id="addCandidateForm"
+              onSubmit="App.addCandidate(); return false;"
+            >
+              <div class="form-group">
+                <label for="addNewCandidate">Enter name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="addNewCandidate"
+                  placeholder="New Candidate Name"
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                id="addNewCandidateBtn"
+                class="btn btn-primary"
+              >
+                Add New Candidate
+              </button>
+            </form>
+          </div>
           <div id="content" style="display: none">
-            <h2>Result</h2>
             <table class="table">
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Votes</th>
+                  <th scope="col" class="name">Name</th>
                 </tr>
               </thead>
-              <tbody id="candidatesResults"></tbody>
+              <tbody id="candidateList"></tbody>
             </table>
-            <hr />
           </div>
         </div>
       </div>

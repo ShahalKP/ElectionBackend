@@ -4,15 +4,32 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Election Results</title>
+    <title>Admin</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <style>
       body {
-        padding-top: 25px;
+        padding-top: 20px;
       }
 
+      .contents {
+        padding-top: 15rem;
+      }
+      .contents button {
+        background-color: #7387d5d5;
+        margin-top: 50px;
+        height: 50px;
+        width: 200px;
+        color: white;
+      }
+      .copyright {
+        bottom: 0;
+        padding-top: 60rem;
+      }
+      /* a {
+        font-size: 18px;
+      } */
       .nav {
         float: right;
         padding-right: 65px;
@@ -21,13 +38,9 @@
       .navbar-header {
         padding-left: 50px;
       }
-      button {
-        background-color: rgb(11, 11, 12);
-      }
     </style>
   </head>
   <body>
-    <!-- Static navbar -->
     <nav class="navbar navbar-light" style="background-color: #e3f2fd">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -41,29 +54,10 @@
         </ul>
       </div>
     </nav>
-    <div class="container" style="width: 650px">
-      <div class="row">
-        <div class="col-lg-12">
-          <!-- <h1 class="text-center">Election</h1>
-					<hr /> -->
 
-          <div id="content" style="display: none">
-            <h2>Result</h2>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Votes</th>
-                </tr>
-              </thead>
-              <tbody id="candidatesResults"></tbody>
-            </table>
-            <hr />
-          </div>
-        </div>
-      </div>
-    </div>
+    <footer class="sticky-footer copyright text-center">
+      <span>Copyright © Election Commission of India 2021</span>
+    </footer>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
