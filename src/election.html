@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Election Results</title>
+    <title>Election</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
@@ -60,7 +60,7 @@
               onSubmit="App.addCandidate(); return false;"
             >
               <div class="form-group">
-                <label for="addNewCandidate">Enter name</label>
+                <label for="addNewCandidate">Enter Election Title</label>
                 <input
                   type="text"
                   class="form-control"
@@ -70,13 +70,14 @@
                 />
               </div>
               <div class="form-group">
-                <label for="ElectionsSelect">Select Election</label>
-                <select class="form-control" id="">
-                  <option>General Election</option>
-                  <option>Local Boady Election</option>
-                  <option>State Assembly Election</option>
-                  <option>Rajya Sabha Election</option>
-                </select>
+                <label for="addNewCandidate"> Election Date</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="addNewCandidate"
+                  placeholder="New Candidate Name"
+                  required
+                />
               </div>
 
               <button
@@ -84,7 +85,7 @@
                 id="addNewCandidateBtn"
                 class="btn btn-primary"
               >
-                Add New Candidate
+                Add New Election
               </button>
             </form>
           </div>
@@ -93,10 +94,10 @@
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col" class="name">Name</th>
+                  <th scope="col" class="name">Election</th>
                 </tr>
               </thead>
-              <tbody id="candidateList"></tbody>
+              <tbody id=""></tbody>
             </table>
           </div>
         </div>
