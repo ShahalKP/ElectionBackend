@@ -20,6 +20,9 @@
       .heading {
         color: white;
       }
+      .navbar {
+        opacity: 0.7;
+      }
       .nav {
         float: right;
         padding-right: 65px;
@@ -57,6 +60,10 @@
         ); /* Black background with opacity */
         cursor: pointer;
       }
+      .vote:hover {
+        background-color: rgb(28, 61, 122) !important;
+        color: white;
+      }
     </style>
   </head>
   <body>
@@ -69,7 +76,7 @@
           </div>
           <ul class="nav navbar-nav">
             <li class="active"><a href="index.html">Home</a></li>
-            <li><a href="vote.html">Cast Vote</a></li>
+            <li><a href="vote.html" class="vote">Cast Vote</a></li>
           </ul>
         </div>
       </nav>

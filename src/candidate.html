@@ -31,7 +31,7 @@
           <a class="navbar-brand" href="#">Admin</a>
         </div>
         <ul class="nav navbar-nav">
-          <li class="active"><a href="index.html">Home</a></li>
+          <li class="active"><a href="admin.html">Home</a></li>
         </ul>
       </div>
     </nav>
@@ -50,7 +50,7 @@
               onSubmit="App.addCandidate(); return false;"
             >
               <div class="form-group">
-                <label for="addNewCandidate">Enter name</label>
+                <label for="addNewCandidate">Enter name and party</label>
                 <input
                   type="text"
                   class="form-control"
@@ -69,16 +69,15 @@
             </form>
           </div>
           <div id="content" style="display: none">
-            <table class="table">
+            <table class="table table-bordered">
               <thead>
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Name</th>
                 </tr>
               </thead>
-              <tbody id="candidatesList"></tbody>
+              <tbody id="candidateList"></tbody>
             </table>
-            <hr />
           </div>
         </div>
       </div>

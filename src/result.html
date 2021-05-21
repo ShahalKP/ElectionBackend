@@ -31,7 +31,7 @@
           <a class="navbar-brand" href="#">Admin</a>
         </div>
         <ul class="nav navbar-nav">
-          <li class="active"><a href="index.html">Home</a></li>
+          <li class="active"><a href="admin.html">Home</a></li>
         </ul>
       </div>
     </nav>
@@ -44,32 +44,11 @@
           <div id="loader">
             <p class="text-center">Loading...</p>
           </div>
-          <div id="addNew" style="margin-bottom: 5em">
-            <form
-              id="addCandidateForm"
-              onSubmit="App.addCandidate(); return false;"
-            >
-              <div class="form-group">
-                <label for="addNewCandidate">Enter name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="addNewCandidate"
-                  placeholder="New Candidate Name"
-                  required
-                />
-              </div>
-              <button
-                type="submit"
-                id="addNewCandidateBtn"
-                class="btn btn-primary"
-              >
-                Add New Candidate
-              </button>
-            </form>
+          <div class="heading" align="center">
+            <h2>Result</h2>
           </div>
           <div id="content" style="display: none">
-            <table class="table">
+            <table class="table table-bordered">
               <thead>
                 <tr>
                   <th scope="col">#</th>
@@ -79,7 +58,6 @@
               </thead>
               <tbody id="candidatesResults"></tbody>
             </table>
-            <hr />
           </div>
         </div>
       </div>

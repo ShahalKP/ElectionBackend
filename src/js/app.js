@@ -127,6 +127,23 @@ App = {
             candidatesSelect.append(candidateOption);
           });
         }
+        //list candidates
+        var candidateList = $("#candidateList");
+        candidateList.empty();
+
+        var candidatesSelect = $("#candidatesSelect");
+        candidatesSelect.empty();
+        for (var i = 1; i <= candidatesCount; i++) {
+          electionInstance.candidates(i).then(function (candidate) {
+            var id = candidate[0];
+            var name = candidate[1];
+
+            // Render candidate Result
+            var candidateTemplate =
+              "<tr><th>" + id + "</th><td>" + name + "</td></tr>";
+            candidateList.append(candidateTemplate);
+          });
+        }
         return electionInstance.voters(App.account);
       })
       .then(function (hasVoted) {
@@ -296,7 +313,7 @@ var myAbi = [
 
 // // Specify address of contract
 var myContractAddress =
-  "0xa314d5c5660949865d48c791ee2eb36889c6fa6cf2ea2db7a468ee4164ff0aec";
+  "0xcb48bc39930e6fc2e623abb3bdb61b4020487f359d53c3cfcbc393a10d242263";
 
 // Instantiate myContract
 var myContract = web3.eth.contract(myAbi);
