@@ -38,6 +38,22 @@
       .navbar-header {
         padding-left: 50px;
       }
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      td,
+      th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f5f5f5;
+      }
     </style>
   </head>
   <body>
@@ -54,6 +70,22 @@
         </ul>
       </div>
     </nav>
+    <div>
+      <table style="width: 100%">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Election Name</th>
+            <th>Candidates Count</th>
+          </tr>
+        </thead>
+        <tbody id="listElections">
+          <tr>
+            <td colspan="3" style="text-align: center">Loading</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <footer class="sticky-footer copyright text-center">
       <span>Copyright © Election Commission of India 2021</span>

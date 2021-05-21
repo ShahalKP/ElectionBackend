@@ -95,37 +95,43 @@ App = {
     App.contracts.Election.deployed()
       .then(function (instance) {
         electionInstance = instance;
-        return electionInstance.candidatesCount();
+        return electionInstance.electionsCount();
       })
-      .then(function (candidatesCount) {
-        var candidatesResults = $("#candidatesResults");
+      .then(function (electionsCount) {
+        var candidatesResults = $("#listElections");
         candidatesResults.empty();
 
         var candidatesSelect = $("#candidatesSelect");
-        candidatesSelect.empty();
 
-        for (var i = 1; i <= candidatesCount; i++) {
-          electionInstance.candidates(i).then(function (candidate) {
-            var id = candidate[0];
-            var name = candidate[1];
-            var voteCount = candidate[2];
+        for (var i = 0; i <= electionsCount-1; i++) {
+          electionInstance
+            .elections(i)
+            .then(function (election) {
+              var id = election[0];
+              var name = election[1];
+              var candidatesCount = election[2];
+			  console.log(election);
 
-            // Render candidate Result
-            var candidateTemplate =
-              "<tr><th>" +
-              id +
-              "</th><td>" +
-              name +
-              "</td><td>" +
-              voteCount +
-              "</td></tr>";
-            candidatesResults.append(candidateTemplate);
+              // Render candidate Result
+              var candidateTemplate =
+                "<tr><td>" +
+                id +
+                "</td><td>" +
+                name +
+                "</td><td>" +
+                candidatesCount +
+                "</td></tr>";
+              candidatesResults.append(candidateTemplate);
 
-            // Render candidate ballot option
-            var candidateOption =
-              "<option value='" + id + "' >" + name + "</ option>";
-            candidatesSelect.append(candidateOption);
-          });
+              // Render candidate ballot option
+              var candidateOption =
+                "<option value='" + id + "' >" + name + "</ option>";
+              candidatesSelect.append(candidateOption);
+            })
+            .catch((err) => {
+              console.log("errr");
+              console.log(err);
+            });
         }
         //list candidates
         var candidateList = $("#candidateList");
@@ -134,19 +140,30 @@ App = {
         var candidatesSelect = $("#candidatesSelect");
         candidatesSelect.empty();
 
-        for (var i = 1; i <= candidatesCount; i++) {
-          electionInstance.candidates(i).then(function (candidate) {
-            var id = candidate[0];
-            var name = candidate[1];
+        // electionInstance
+        //   .elections(1)
+        //   .then(function (election) {
+        // 	  var candidates = election[2]
+        // 	  console.log('hola');
+        // 	  console.log(election);
+        //   })
+        //   .catch(function (error) {
+        //     console.warn(error);
+        //   });
 
-            // Render candidate Result
-            var candidateTemplate =
-              "<tr><th>" + id + "</th><td>" + name + "</td></tr>";
-            candidateList.append(candidateTemplate);
+        // for (var i = 1; i <= electionsCount; i++) {
+        //   electionInstance.candidates(i).then(function (candidate) {
+        //     var id = candidate[0];
+        //     var name = candidate[1];
 
-            // Render candidate ballot option
-          });
-        }
+        //     // Render candidate Result
+        //     var candidateTemplate =
+        //       "<tr><th>" + id + "</th><td>" + name + "</td></tr>";
+        //     candidateList.append(candidateTemplate);
+
+        //     // Render candidate ballot option
+        //   });
+        // }
         return electionInstance.voters(App.account);
       })
       .then(function (hasVoted) {
@@ -315,8 +332,7 @@ var myAbi = [
 ];
 
 // // Specify address of contract
-var myContractAddress =
-  "0xcb48bc39930e6fc2e623abb3bdb61b4020487f359d53c3cfcbc393a10d242263";
+var myContractAddress = "0xf24471dad96275b2584b674641ae3c06618ffa9a1bc5214db48dbadb17f8cd73";
 
 // Instantiate myContract
 var myContract = web3.eth.contract(myAbi);
