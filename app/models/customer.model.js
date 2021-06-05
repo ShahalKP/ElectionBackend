@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-  const Voter = sequelize.define("voter", {
+  const Customer = sequelize.define("customer", {
     id: {
       type: Sequelize.INTEGER,
       autoIncrement: true,
@@ -14,20 +14,7 @@ module.exports = (sequelize, Sequelize) => {
     age: {
       type: Sequelize.INTEGER,
     },
-    Idnumber: {
-      type: Sequelize.STRING,
-    },
-    Status: {
-      type: Sequelize.STRING,
-    },
-    privatekey: {
-      type: Sequelize.STRING,
-    },
-
-    accountaddress: {
-      type: Sequelize.STRING,
-    },
   });
 
-  return Voter;
+  return Customer;
 };

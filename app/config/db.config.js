@@ -19,6 +19,6 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.Voter = require("../models/customer.model.js")(sequelize, Sequelize);
+db.Customer = require("../models/customer.model.js")(sequelize, Sequelize);
 
 module.exports = db;

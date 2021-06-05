@@ -1,5 +1,4 @@
 const express = require("express");
-const { sequelize } = require("./app/config/db.config.js");
 const app = express();
 
 const db = require("./app/config/db.config.js");
@@ -14,17 +13,6 @@ db.sequelize.sync({ force: true }).then(() => {
 let router = require("./app/routers/excel.router.js");
 app.use(express.static("resources"));
 app.use("/", router);
-
-app.get("/voters", (req, res) => {
-  console.log("inside");
-  let sql = "SELECT * FROM voters";
-  let query = sequelize.query(sql, (err, results) => {
-    console.log(query);
-    if (err) throw err;
-    console.log(results);
-    res.send(JSON.stringify({ status: 200, error: null, response: results }));
-  });
-});
 
 // Create a Server
 const server = app.listen(8080, function () {
