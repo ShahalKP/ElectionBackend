@@ -3,9 +3,8 @@ var await = require("await");
 
 const db = require("../config/db.config.js");
 const Voter = db.Voter;
-
+var cors = require("cors");
 const excel = require("exceljs");
-
 const readXlsxFile = require("read-excel-file/node");
 const { rootCertificates } = require("tls");
 
@@ -35,6 +34,7 @@ exports.uploadFile = (req, res) => {
           privatekey: rows[i][7],
           Status: rows[i][5],
           accountaddress: rows[i][6],
+          mobile: rows[i][8],
         };
 
         voters.push(voter);
@@ -95,6 +95,7 @@ exports.uploadMultipleFiles = async (req, res) => {
           privatekey: rows[i][7],
           Status: rows[i][5],
           accountaddress: rows[i][6],
+          mobile: rows[i][8],
         };
 
         voters.push(voter);
@@ -151,6 +152,7 @@ exports.downloadFile = (req, res) => {
         accountaddress: datavalues.accountaddress,
         Status: datavalues.Status,
         Idnumber: datavalues.Idnumber,
+        mobile: datavalues.mobile,
       };
       voters.push(voter);
     }
@@ -168,6 +170,8 @@ exports.downloadFile = (req, res) => {
       { header: "Address", key: "address", width: 30 },
       { header: "PrivateKey", key: "privatekey", width: 30 },
       { header: "AccountAddress", key: "accountaddress", width: 30 },
+      { header: "mobile", key: "mobile", width: 30 },
+
       { header: "IdNumber", key: "Idnumber", width: 30 },
       { header: "Status", key: "Status", width: 30 },
       { header: "Age", key: "age", width: 10, outlineLevel: 1 },
@@ -189,4 +193,20 @@ exports.downloadFile = (req, res) => {
       res.status(200).end();
     });
   });
+};
+exports.findAll = (req, res, next) => {
+  const title = req.query.title;
+  var condition = title ? { title: { [Op.iLike]: `%${title}%` } } : null;
+  Voter.findAll()
+    .then((data) => {
+      res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+      res.send(data);
+      console.log("export data", data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving tutorials.",
+      });
+    });
 };

@@ -10,10 +10,6 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <style>
       body {
-        background-image: url("images/bg.jpg");
-        background-repeat: no-repeat;
-        background-attachment: unset;
-        background-size: cover;
         font-family: "verdana";
       }
 
@@ -31,72 +27,94 @@
       .navbar-header {
         padding-left: 50px;
       }
-      h3 {
-        color: white;
-        font-size: 55px;
-        text-align: center;
-      }
-      .content {
-        padding: 60px;
-        position: relative;
-        top: 50px;
-      }
-      .slogan {
-        padding-top: 15px;
-      }
-      .overlay {
-        position: fixed; /* Sit on top of the page content */
-        width: 100%; /* Full width (cover the whole page) */
-        height: 100%; /* Full height (cover the whole page) */
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(
-          0,
-          0,
-          0,
-          0.5
-        ); /* Black background with opacity */
-        cursor: pointer;
-      }
-      .vote:hover {
-        background-color: rgb(28, 61, 122) !important;
-        color: white;
+      .verification {
+        margin: 100px 500px;
       }
     </style>
   </head>
   <body>
-    <!-- Static navbar -->
-    <div class="overlay">
-      <nav class="navbar navbar-light" style="background-color: #e3f2fd">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#">Election Portal</a>
-          </div>
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="index.html">Home</a></li>
-            <li><a href="vote.html" class="vote">Cast Vote</a></li>
-          </ul>
-        </div>
-      </nav>
-      <div class="content">
-        <div class="container" style="width: 650px">
-          <div class="heading">
-            <h3>Hello Voter!</h3>
-          </div>
-          <div class="slogan">
-            <h3>Shape Tomorrow By Voting Today...</h3>
-          </div>
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Election Portal</a>
         </div>
       </div>
+    </nav>
+    <div class="verification">
+      <form>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Enter the Mobile number</label>
+          <input
+            type="text"
+            class="form-control"
+            id="number"
+            aria-describedby="emailHelp"
+            placeholder="+91**********"
+          />
+          <div id="recaptcha-container"></div>
+        </div>
+
+        <button type="button" onclick="phoneAuth();" class="btn btn-primary">
+          Send otp
+        </button>
+      </form>
+      <form>
+        <div class="form-group">
+          <label>Enter the otp</label>
+          <input
+            type="text"
+            class="form-control"
+            id="verificationCode"
+            aria-describedby="emailHelp"
+            placeholder="Enter the otp"
+          />
+        </div>
+
+        <button type="button" onclick="codeverify();" class="btn btn-primary">
+          verify
+        </button>
+      </form>
     </div>
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-analytics.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-firestore.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-auth.js"></script>
+    <script>
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      var firebaseConfig = {
+        apiKey: "AIzaSyBCgGIZwEQdvRwDnQh6R5r6MWMAt_SmOFE",
+        authDomain: "otp-verification-b2bd0.firebaseapp.com",
+        projectId: "otp-verification-b2bd0",
+        storageBucket: "otp-verification-b2bd0.appspot.com",
+        messagingSenderId: "292419877278",
+        appId: "1:292419877278:web:2c708f40eee727c63e7e8f",
+        measurementId: "G-71ZPVCB14S",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      // firebase.analytics();
+    </script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
     <script src="js/web3.min.js"></script>
     <script src="js/truffle-contract.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/authentication.js" type="text/javascript"></script>
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
   </body>
 </html>

@@ -16,6 +16,9 @@ contract Election {
         string name;
         uint voteCount;
     }
+    event votedEvent (
+        uint indexed _candidateId
+    );
 
     // Read/write Candidates
     mapping(uint => Candidate) public candidates;

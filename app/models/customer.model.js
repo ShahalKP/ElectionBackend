@@ -27,6 +27,9 @@ module.exports = (sequelize, Sequelize) => {
     accountaddress: {
       type: Sequelize.STRING,
     },
+    mobile: {
+      type: Sequelize.STRING,
+    },
   });
 
   return Voter;

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Election</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+      body {
+        background-image: url("images/bg.jpg");
+        background-repeat: no-repeat;
+        background-attachment: unset;
+        background-size: cover;
+        font-family: "verdana";
+      }
+
+      .heading {
+        color: white;
+      }
+      .navbar {
+        opacity: 0.7;
+      }
+      .nav {
+        float: right;
+        padding-right: 65px;
+        font-size: 16px;
+      }
+      .navbar-header {
+        padding-left: 50px;
+      }
+      h3 {
+        color: white;
+        font-size: 55px;
+        text-align: center;
+      }
+      .content {
+        padding: 60px;
+        position: relative;
+        top: 50px;
+      }
+      .slogan {
+        padding-top: 15px;
+      }
+      .overlay {
+        position: fixed; /* Sit on top of the page content */
+        width: 100%; /* Full width (cover the whole page) */
+        height: 100%; /* Full height (cover the whole page) */
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.5
+        ); /* Black background with opacity */
+        cursor: pointer;
+      }
+      .vote:hover {
+        background-color: rgb(28, 61, 122) !important;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Static navbar -->
+    <div class="overlay">
+      <nav class="navbar navbar-light" style="background-color: #e3f2fd">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Election Portal</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="index.html">Home</a></li>
+            <li><a href="vote.html" class="vote">Cast Vote</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="content">
+        <div class="container" style="width: 650px">
+          <div class="heading">
+            <h3>Hello Voter!</h3>
+          </div>
+          <div class="slogan">
+            <h3>Shape Tomorrow By Voting Today...</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/web3.min.js"></script>
+    <script src="js/truffle-contract.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
